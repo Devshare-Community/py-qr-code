@@ -68,3 +68,19 @@ def generate():
         messagebox.showinfo("", "Please Enter some filename or subject")
 
 
+# func to save barcode in png format
+def brsave():
+    try:
+        if len(name.get()) != 0 and name.get() != "Enter filename here":
+            dir = "Bar_Codes"
+            if not os.path.exists(dir):
+                os.makedirs(dir)
+            spath = os.path.join(dir, name.get())
+            brcode.save(spath)
+            os.remove(fpath + ".png")
+            messagebox.showinfo("", "Barcode saved in png format")
+        else:
+            messagebox.showinfo("", "Please enter a File Name")
+    except:
+        messagebox.showinfo("", "Generate the Bar code first!")
+
