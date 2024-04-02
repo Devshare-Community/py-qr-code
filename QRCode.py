@@ -100,3 +100,24 @@ def showbrcode():
     imageLabel.config(image=photo1)
     subLabel.config(text="")
 
+
+# function to save the generated code locally in png format
+def save():
+    dir = "QR_Codes"
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    try:
+        if len(name.get()) != 0 and name.get() != "Enter filename here":
+            if s == 0:
+                messagebox.showinfo("alert", "Select size first")
+            else:
+                version, level, qr = myqr.run(Subject.get(), version=1, level='H', picture=filename, colorized=True,
+                                              contrast=1.0, brightness=1.0, save_name=name.get() + ".png",
+                                              save_dir=os.path.join(os.getcwd(), "QR_Codes"))
+                os.remove(os.path.join("src", name.get()) + ".png")
+                messagebox.showinfo("", "Saved")
+        else:
+            messagebox.showinfo("", "Please enter a File Name")
+    except:
+        messagebox.showinfo("", "Generate the QR code first!")
+
