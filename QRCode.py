@@ -121,3 +121,17 @@ def save():
     except:
         messagebox.showinfo("", "Generate the QR code first!")
 
+
+# function to save the generated code locally in svg format
+def svg():
+    dir = "QR_Codes"
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    if not os.path.exists('src/' + Subject.get() + '.png'):
+        version, level, qr = myqr.run(Subject.get(), version=1, level='H', picture=filename, colorized=True,
+                                      contrast=1.0, brightness=1.0, save_name=Subject.get() + ".png",
+                                      save_dir=os.path.join(os.getcwd(), "src"))
+    shutil.copyfile('src/' + Subject.get() + '.png', 'QR_Codes/' + Subject.get() + '.svg')
+    os.remove(os.path.join("src", Subject.get()) + ".png")
+    messagebox.showinfo("", "Saved")
+
