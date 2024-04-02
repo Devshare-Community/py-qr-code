@@ -135,3 +135,14 @@ def svg():
     os.remove(os.path.join("src", Subject.get()) + ".png")
     messagebox.showinfo("", "Saved")
 
+
+# dummy func
+def dummy():
+    try:
+        if len(name.get()) != 0 and Subject.get() != "Enter subject here" and name.get() != "Enter filename here":
+            messagebox.showinfo("", "Select size")
+        else:
+            messagebox.showinfo("", "Please enter a File Name")
+    except:
+        messagebox.showinfo("", "Generate the QR code first!")
+
