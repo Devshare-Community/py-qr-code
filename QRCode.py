@@ -92,3 +92,11 @@ def showcode():
     imageLabel.config(image=photo)
     subLabel.config(text="QR of " + Subject.get())
 
+
+# func to show barcode
+def showbrcode():
+    global photo1
+    photo1 = PhotoImage(file=fpath + ".png")
+    imageLabel.config(image=photo1)
+    subLabel.config(text="")
+
