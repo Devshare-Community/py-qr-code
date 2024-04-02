@@ -44,3 +44,27 @@ def storedata():
             writer.writerow([Subject.get(), "Barcode", timestampStr2])
 
 
+# function generate the qr code
+def generate():
+    if len(name.get()) != 0 and name.get() != "Enter filename here" and len(
+            Subject.get()) != 0 and Subject.get() != "Enter subject here":
+        if '/' not in name.get():
+            global qr, photo, filename, save_dir, timestampStr1, type1
+            filename = open_file()
+            version, level, qr = myqr.run(Subject.get(), version=1, level='H', picture=filename, colorized=True,
+                                          contrast=1.0, brightness=1.0, save_name=name.get() + ".png",
+                                          save_dir=os.path.join(os.getcwd(), "src"))
+            dateTimeObj = datetime.now()
+            timestampStr1 = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+            type1 = 1
+            storedata()
+            try:
+                showcode()
+            except:
+                pass
+        else:
+            messagebox.showinfo("", "filename can't contains '/'")
+    else:
+        messagebox.showinfo("", "Please Enter some filename or subject")
+
+
