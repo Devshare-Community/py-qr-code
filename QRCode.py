@@ -84,3 +84,11 @@ def brsave():
     except:
         messagebox.showinfo("", "Generate the Bar code first!")
 
+
+# function to show the qr code
+def showcode():
+    global photo
+    photo = PhotoImage(file=os.path.join(os.getcwd(), "src") + "/" + name.get() + ".png")
+    imageLabel.config(image=photo)
+    subLabel.config(text="QR of " + Subject.get())
+
